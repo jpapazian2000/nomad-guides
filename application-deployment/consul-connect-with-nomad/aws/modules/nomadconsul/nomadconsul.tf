@@ -14,11 +14,11 @@ variable "subnet_id" {}
 
 # Security Group
 resource "aws_security_group" "primary" {
-  name   = var.name_tag_prefix}-sg"
+  name   = var.name_tag_prefix}-sg
   vpc_id = var.vpc_id
 
   tags = {
-    Name = var.name_tag_prefix}-sg"
+    Name = var.name_tag_prefix}-sg
   }
 }
 
@@ -232,7 +232,7 @@ resource "aws_security_group_rule" "http_egress" {
 
 # Template File for Server
 data "template_file" "user_data_server_primary" {
-  template = file(path.root}/user-data-server.sh")
+  template = file(path.root}/user-data-server.sh)
 
   vars = {
     server_count      = var.server_count
@@ -243,7 +243,7 @@ data "template_file" "user_data_server_primary" {
 
 # Template File for Client
 data "template_file" "user_data_client" {
-  template = file(path.root}/user-data-client.sh")
+  template = file(path.root}/user-data-client.sh)
 
   vars = {
     region            = var.region
@@ -263,7 +263,7 @@ resource "aws_instance" "primary" {
 
   #Instance tags
   tags  = {
-    Name = var.name_tag_prefix}-server-${count.index
+    Name = var.name_tag_prefix}-server-${count.index}
     ConsulAutoJoin = var.cluster_tag_value
     owner = var.owner
     TTL = var.ttl
@@ -286,7 +286,7 @@ resource "aws_instance" "client" {
 
   #Instance tags
   tags = {
-    Name = var.name_tag_prefix}-client-${count.index
+    Name = var.name_tag_prefix}-client-${count.index}
     ConsulAutoJoin = var.cluster_tag_value
     owner = var.owner
     TTL = var.ttl
@@ -299,13 +299,13 @@ resource "aws_instance" "client" {
 
 # IAM Instance Profile
 resource "aws_iam_instance_profile" "instance_profile" {
-  name_prefix = var.name_tag_prefix}-profile"
+  name_prefix = var.name_tag_prefix}-profile
   role        = aws_iam_role.instance_role.name
 }
 
 # IAM Instance Role
 resource "aws_iam_role" "instance_role" {
-  name_prefix        = var.name_tag_prefix}-role"
+  name_prefix        = var.name_tag_prefix}-role
   assume_role_policy = data.aws_iam_policy_document.instance_role.json
 }
 
@@ -324,7 +324,7 @@ data "aws_iam_policy_document" "instance_role" {
 
 # IAM Policy
 resource "aws_iam_role_policy" "auto_discover_cluster" {
-  name   = var.name_tag_prefix}-auto-discover-cluster"
+  name   = var.name_tag_prefix}-auto-discover-cluster
   role   = aws_iam_role.instance_role.id
   policy = data.aws_iam_policy_document.auto_discover_cluster.json
 }
