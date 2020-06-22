@@ -286,7 +286,7 @@ resource "aws_instance" "client" {
 
   #Instance tags
   tags = {
-    Name = "${var.name_tag_prefix}-client-${count.index}
+    Name = "${var.name_tag_prefix}-client-${count.index}"
     ConsulAutoJoin = var.cluster_tag_value
     owner = var.owner
     TTL = var.ttl
