@@ -232,7 +232,7 @@ resource "aws_security_group_rule" "http_egress" {
 
 # Template File for Server
 data "template_file" "user_data_server_primary" {
-  template = "${file(path.root/user-data-server.sh)}"
+  template = "${file("${path.root}/user-data-server.sh")}"
 
   vars = {
     server_count      = var.server_count
@@ -243,7 +243,7 @@ data "template_file" "user_data_server_primary" {
 
 # Template File for Client
 data "template_file" "user_data_client" {
-  template = "${file(path.root/user-data-client.sh)}"
+  template = "${file("${path.root}/user-data-client.sh")}"
 
   vars = {
     region            = var.region
