@@ -12,4 +12,6 @@ The Consul UI can be accessed at http://${element(module.nomadconsul.primary_ser
 The Nomad UI can be accessed at http://${element(module.nomadconsul.primary_server_public_ips, 0)}:4646/ui
 
 CONFIGURATION
+
 }
+
