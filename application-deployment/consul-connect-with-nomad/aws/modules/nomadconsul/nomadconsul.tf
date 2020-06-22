@@ -14,11 +14,11 @@ variable "subnet_id" {}
 
 # Security Group
 resource "aws_security_group" "primary" {
-  name   = var.name_tag_prefix-sg
+  name   = "${var.name_tag_prefix}-sg"
   vpc_id = var.vpc_id
 
   tags = {
-    Name = var.name_tag_prefix}-sg
+    Name = "${var.name_tag_prefix}-sg"
   }
 }
 
@@ -263,7 +263,7 @@ resource "aws_instance" "primary" {
 
   #Instance tags
   tags  = {
-    Name = var.name_tag_prefix-server-${count.index}
+    Name = "${var.name_tag_prefix}-server-${count.index}"
     ConsulAutoJoin = var.cluster_tag_value
     owner = var.owner
     TTL = var.ttl
@@ -286,7 +286,7 @@ resource "aws_instance" "client" {
 
   #Instance tags
   tags = {
-    Name = var.name_tag_prefix-client-${count.index}
+    Name = "${var.name_tag_prefix}-client-${count.index}
     ConsulAutoJoin = var.cluster_tag_value
     owner = var.owner
     TTL = var.ttl
