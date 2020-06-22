@@ -299,13 +299,13 @@ resource "aws_instance" "client" {
 
 # IAM Instance Profile
 resource "aws_iam_instance_profile" "instance_profile" {
-  name_prefix = var.name_tag_prefix}-profile
+  name_prefix = "${var.name_tag_prefix}-profile"
   role        = aws_iam_role.instance_role.name
 }
 
 # IAM Instance Role
 resource "aws_iam_role" "instance_role" {
-  name_prefix        = var.name_tag_prefix}-role
+  name_prefix        = "${var.name_tag_prefix}-role"
   assume_role_policy = data.aws_iam_policy_document.instance_role.json
 }
 
@@ -324,7 +324,7 @@ data "aws_iam_policy_document" "instance_role" {
 
 # IAM Policy
 resource "aws_iam_role_policy" "auto_discover_cluster" {
-  name   = var.name_tag_prefix}-auto-discover-cluster
+  name   = "${var.name_tag_prefix}-auto-discover-cluster"
   role   = aws_iam_role.instance_role.id
   policy = data.aws_iam_policy_document.auto_discover_cluster.json
 }
